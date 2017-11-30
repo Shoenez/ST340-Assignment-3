@@ -29,14 +29,14 @@ gradient.descent <- function(f, df, x0, iterations=1000, alpha=0.2) {
 
 Example:
 ```{r eval=FALSE}
-f <-function(x) { sum(x^2) }
-df<-function(x) { 2*x }
+f <- function(x) { sum(x^2) }
+df <- function(x) { 2*x }
 gradient.descent(f, df, c(10,20), 10, 0.2)
 ```
 
 ## Q1a
-Write a _short_ function that uses `gradient.descent` to find a local _maxima_.
-(For the purpose of this question, `gradient.descent` is a "black box". 
+Write a _short_ function that uses `gradient.ascent` to find a local _maxima_.
+(For the purpose of this question, `gradient.ascent` is a "black box". 
 Don't worry about the printed output, just the return value matters.)
 
 ```{r}
@@ -65,10 +65,20 @@ f <- function(x) (x[1] - 1)^2 + 100*(x[1]^2 - x[2])^2
 ```
 
 (@) Give a short mathematical proof that f has a a unique minima.
-(@) Write a function df to calculate the gradient of f, i.e.  
-`df <- function(x) { ... use x[1] and x[2] ...}`  
+
+(@) Write a function df to calculate the gradient of f, i.e. 
+```{r}
+df <- function(x) { 
+   c( 2*(x[1] - 1) + 400*x[1]*(x[1]^2 - x[2]), -200*(x[1]^2 - x[2]) )
+  }
+```
+
 (@) Starting from the point `x0=c(3,4)`, try to find the minimum using gradient descent.  
 `gradient.descent(f,df,c(3,4), ... , ...)`
+
+```{r}
+gradient.descent(f, df, c(3,4), 10, 1e-5)
+```
 
 ## Q1c
 Write a function to do gradient descent with momentum.
