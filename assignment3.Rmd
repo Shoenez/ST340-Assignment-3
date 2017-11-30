@@ -5,7 +5,7 @@ date: "Friday 8 December 2017"
 output: pdf_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, eval=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -72,7 +72,7 @@ test.X=test.X/255
 ```
 
 show some digits:
-```{r fig.show='hide'}
+```{r }
 library(grid)
 grid.raster(  array(aperm(array(train.X[1:50,],c(5,10,28,28)),c(4,1,3,2)),c(140,280)),
               interpolate=F)
@@ -81,7 +81,7 @@ grid.raster(  array(aperm(array(train.X[1:50,],c(5,10,28,28)),c(4,1,3,2)),c(140,
 Use 3-fold cross validation on the training set to compare SVMs with linear kernels,
 polynomial kernels and RBF kernels.
 i.e.
-```{r eval=FALSE}
+```{r }
 library(e1071)
 svm(train.X,train.labels,type="C-classification",kernel="linear",cross=3)$tot.accuracy
 svm(train.X,train.labels,type="C-classification",kernel="poly",
